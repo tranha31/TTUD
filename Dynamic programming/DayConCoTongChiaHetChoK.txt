@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 10000005;
+int n, k, dp[10005][10005], a[10005];
+
+void Trace(int i, int j){
+    if(i == 0) return;
+    if(dp[i][j] == dp[i-1][(j+k-a[i])%k] + 1){
+        Trace(i-1, (j+k-a[i])%k);
+        cout << i << " ";
+    }
+    else{
+        Trace(i-1, j);
+    }
+}
+
+int main(){
+    cin >> n >> k;
+    dp[0][0] = 0;
+    for(int j=1; j<k; j++){
+        dp[0][j] = -INT_MAX;
+    }
+    for(int i=1; i<=n; i++){
+        cin >> a[i];
+        a[i] %= k;
+        for(int j=0; j<k; j++){
+            dp[i][j] = max(dp[i-1][j], dp[i-1][(j+k-a[i])%k] +1);
+        }
+    }
+    cout << dp[n][0] << endl;
+    Trace(n, 0);
+    return 0;
+}

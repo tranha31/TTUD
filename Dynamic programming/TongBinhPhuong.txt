@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 10000005;
+const int K = 1000000007;
+int n, k, l, W, m;
+long long dp[10005][10005], dp1[10005], b[10005], c[10005];
+vector<int> kq, vt;
+int even = 0;
+
+void Trace(int i){
+    if(i < 0) return;
+    for(int j=1; j<=sqrt(i); j++){
+        if(dp1[i] == dp1[i-j*j]+1){
+            kq.push_back(j);
+            Trace(i-j*j);
+            break;
+        }
+    }
+}
+
+int main(){
+
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    cin >> n;
+    for(int i=0; i<=n; i++){
+        dp1[i] = i;
+    }
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=sqrt(i); j++){
+            dp1[i] = min(dp1[i], dp1[i-j*j]+1);
+        }
+    }
+    cout << dp1[n] << '\n';
+    Trace(n);
+    for(int i=0; i<kq.size(); i++){
+        cout << kq.at(i) << " ";
+    }
+    return 0;
+}

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1600625052 source:c:\users\taha\desktop\01add\main.cpp
+	<iostream>
+	<stdlib.h>
+	<vector>
+

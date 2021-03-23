@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1601314811 source:c:\users\taha\desktop\locate\main.cpp
+	<iostream>
+	<algorithm>
+	<vector>
+	<utility>
+	<cstring>
+

@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 100005;
+
+vector<pair<int, int>> adj[N];
+set<int> a[N];
+bool inTree[N];
+int n, m, k, s, t;
+
+int dijkstra() {
+    vector<int> d(n+1, INT_MAX);
+    priority_queue<pair<int, int>> Q;
+    d[s] = 0;
+    Q.push({0, s});
+    while(!Q.empty()){
+        int u = Q.top().second;
+        int du = -Q.top().first;
+        Q.pop();
+        if(du != d[u]) continue;
+        for(auto x:adj[u]){
+            int v = x.first;
+            int c = x.second;
+            if(d[v] > d[u]+c){
+                d[v] = d[u]+c;
+                Q.push({-d[v],v});
+            }
+        }
+    }
+    return d[t];
+}
+
+int main() {
+
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+
+    cin >> n >> m;
+    for(int i=1; i<=m; i++){
+        int u, v, w;
+        cin >> u >> v >> w;
+        adj[u].push_back({v, w});
+    }
+    cin >> s >> t;
+    int ans = dijkstra();
+    if(ans == INT_MAX) cout << -1;
+    else cout << ans;
+    return 0;
+}

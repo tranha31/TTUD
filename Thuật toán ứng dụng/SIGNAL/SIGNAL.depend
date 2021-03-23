@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1601318419 source:c:\users\taha\desktop\signal\main.cpp
+	<iostream>
+	<queue>
+	<vector>
+	<algorithm>
+

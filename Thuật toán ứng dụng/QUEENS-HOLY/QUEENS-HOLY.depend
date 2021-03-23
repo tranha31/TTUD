@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1602678801 source:c:\users\taha\desktop\queens-holy\main.cpp
+	<iostream>
+	<string.h>
+

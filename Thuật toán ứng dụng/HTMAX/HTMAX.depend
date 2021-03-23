@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1608407980 source:c:\users\taha\desktop\htmax\main.cpp
+	<iostream>
+	<vector>
+

@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 10000005;
+int n, k, dp[10005], a[10005];
+
+int main(){
+    cin >> n;
+    dp[0] = 1;
+    for(int i=0; i<n; i++){
+        cin >> a[i];
+    }
+    for(int i=1; i<n; i++){
+        int lmax = 0;
+        for(int j=0; j<i; j++){
+            if(a[j] < a[i]){
+                if(dp[j] > lmax){
+                    lmax = dp[j];
+                }
+            }
+        }
+        dp[i] = lmax + 1;
+    }
+    int ans = 0;
+    for(int i=0; i<n; i++){
+        if(ans < dp[i]){
+            ans = dp[i];
+        }
+    }
+    cout << ans << endl;
+    int tmp = INT_MAX;
+    vector<int> kq;
+    for(int i=n-1; i>=0; i--){
+        if(dp[i] == ans){
+            if(a[i] < tmp){
+                kq.push_back(i);
+                tmp = a[i];
+                ans -= 1;
+            }
+        }
+    }
+    for(int i=kq.size()-1; i>=0; i--){
+        cout << kq.at(i) << " ";
+    }
+    return 0;
+}

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1603010853 source:c:\users\taha\desktop\cnk rm\main.cpp
+	<bits/stdc++.h>
+	<vector>
+	<tuple>
+

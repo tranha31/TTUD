@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+const int N = 100005;
+int n, m;
+vector<int> adj[N];
+int low[N], num[N], current = 0, visited[N], pre[N], side[N];
+bool Khop[N], is_biparite = true;
+int TLM = 0;
+ 
+void check(int u){
+    for(int i=0; i<adj[u].size(); i++){
+        int v = adj[u][i];
+        if(side[v] == -1){
+            side[v] = 1-side[u];
+            check(v);
+        }
+        else if(side[u] == side[v]){
+            is_biparite = false;
+        }
+    }
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+ 
+    cin >> n >> m;
+    for(int i=1; i<=m; i++){
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    memset(side, -1, sizeof(side));
+    for(int i=1; i<=n; i++){
+        if(side[i] == -1){
+            side[i] = 0;
+            check(i);
+        }
+    }
+    if(is_biparite){
+        cout << 1;
+    }
+    else{
+        cout << 0;
+    }
+    return 0;
+}

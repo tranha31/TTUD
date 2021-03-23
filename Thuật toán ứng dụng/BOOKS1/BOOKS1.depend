@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1605003294 source:c:\users\taha\desktop\books1\main.cpp
+	<iostream>
+	<algorithm>
+	<vector>
+

@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1603101608 source:c:\users\taha\desktop\route\main.cpp
+	<iostream>
+	<conio.h>
+	<vector>
+	<string>
+	<string.h>
+

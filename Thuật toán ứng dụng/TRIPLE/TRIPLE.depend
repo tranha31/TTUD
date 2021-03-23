@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1604945195 source:c:\users\taha\desktop\triple\main.cpp
+	<iostream>
+	<algorithm>
+

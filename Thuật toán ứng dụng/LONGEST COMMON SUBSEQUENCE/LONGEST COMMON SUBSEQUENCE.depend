@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1606763506 source:c:\users\taha\desktop\longest common subsequence\main.cpp
+	<iostream>
+	<string>
+	<string.h>
+	<algorithm>
+

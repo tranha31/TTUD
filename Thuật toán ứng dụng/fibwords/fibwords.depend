@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1606755641 source:c:\users\taha\desktop\fibwords\main.cpp
+	<iostream>
+	<string>
+	<string.h>
+

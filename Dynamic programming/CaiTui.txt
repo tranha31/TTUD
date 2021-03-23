@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 10000005;
+const int K = 1000000007;
+int n, k, l, W;
+long long dp[10005][10005], dp1[10005], b[10005], c[10005];
+vector<int> kq, vt;
+int even = 0;
+
+struct tui{
+    long long a, c;
+};
+
+int main(){
+
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    cin >> n >> W;
+    tui a[n+5];
+    for(int i=1; i<=n; i++){
+        cin >> a[i].a >> a[i].c;
+    }
+    memset(dp, 0, sizeof(dp));
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=W; j++){
+            if(j >= a[i].a){
+                dp[i][j] = max(dp[i-1][j], a[i].c+dp[i-1][j-a[i].a]);
+            }
+            else{
+                dp[i][j] = dp[i-1][j];
+            }
+        }
+    }
+    cout << dp[n][W] << '\n';
+    return 0;
+}

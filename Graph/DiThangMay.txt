@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<string.h>
+#include<queue>
+#include<algorithm>
+#include<iostream>
+using namespace std;
+
+const int maxn = 1000000 + 10;
+
+int f,s,g,u,d;
+int flag, step;
+
+int vis[maxn];
+
+struct Node{
+	int p;
+	int step;
+};
+queue<Node> q;
+void bfs(int s)
+{
+	Node now, next;
+	now = (Node) {s, 0};
+
+	while(!q.empty()) q.pop();
+	q.push(now);
+
+	memset(vis, 0, sizeof(vis));
+	vis[s] = 1;
+
+	while(!q.empty())
+	{
+		now = q.front(); q.pop();
+
+		for(int i = 1; i <= 2; i++)
+		{
+			if(i == 1) next.p = now.p+u;
+			if(i == 2) next.p = now.p-d;
+
+			if(next.p < 1 || next.p > f) continue;
+
+			if(!vis[next.p])
+		    {
+    			vis[next.p] = 1;
+    			next.step = now.step+1;
+    			q.push(next);
+
+    			if(next.p == g)
+    			{
+			    	flag = 1;
+			    	step = next.step;
+			    	return;
+			    }
+    		}
+		}
+	}
+	return;
+
+}
+int main()
+{
+	scanf("%d %d %d %d %d", &f,&s,&g,&u,&d);
+
+    if(s == g)
+    {
+        printf("0\n");
+    }
+    flag = 0;
+    bfs(s);
+    if(flag) printf("%d\n", step);
+    else printf("use the stairs\n");
+
+	return 0;
+}

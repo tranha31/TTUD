@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1601834473 source:c:\users\taha\desktop\postman\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+

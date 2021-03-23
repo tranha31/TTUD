@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1604600367 source:c:\users\taha\desktop\bacp\main.cpp
+	<iostream>
+	<vector>
+

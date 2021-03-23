@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 100005;
+
+vector<int> adj[N];
+set<int> a[N];
+bool inTree[N];
+int n, m, k;
+
+int determiant(int mt[25][25], int n){
+    int s, sum = 0;
+    if(n==1) return mt[0][0];
+    if(n==2) return (mt[0][0]*mt[1][1]-mt[0][1]*mt[1][0]);
+    for(int k=0; k<n; k++){
+        int smaller[25][25];
+        for(int i=0; i<n; i++){
+            for(int j=1; j<n; j++){
+                if(i<k) smaller[i][j-1] = mt[i][j];
+                else if(i > k) smaller[i-1][j-1] = mt[i][j];
+            }
+        }
+        if(k%2 == 0) s=1;
+        else s = -1;
+        sum += mt[k][0]*s*determiant(smaller, n-1);
+    }
+    return sum;
+}
+
+int32_t main() {
+
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+
+    cin >> n >> m;
+    for(int i=1; i<=m; i++){
+        int x, y;
+        cin >> x >> y;
+        a[x].insert(y);
+        a[y].insert(x);
+        //adj[x].push_back(y);
+        //adj[y].push_back(x);
+    }
+    int ma[n][n];
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            if(i==j){
+                ma[i][j] = a[i+1].size();
+            }
+            else{
+                if(a[i+1].find(j+1) != a[i+1].end()){
+                    ma[i][j] = -1;
+                }
+                else{
+                    ma[i][j] = 0;
+                }
+            }
+        }
+    }
+    int M[25][25];
+    for(int i=0; i<n-1; i++){
+        for(int j=0; j<n-1; j++){
+            M[i][j] = ma[i+1][j+1];
+        }
+    }
+    int kq = determiant(M, n-1);
+    cout << kq;
+    return 0;
+}

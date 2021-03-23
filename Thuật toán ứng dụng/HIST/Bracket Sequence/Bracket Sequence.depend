@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1601916712 source:c:\users\taha\desktop\bracket sequence\main.cpp
+	<iostream>
+	<stack>
+	<vector>
+	<algorithm>
+	<tuple>
+	<string.h>
+	<string>
+

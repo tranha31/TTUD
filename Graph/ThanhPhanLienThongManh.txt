@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 100005;
+int n, m;
+vector<int> adj[N];
+int low[N], num[N], current = 0;
+bool Khop[N];
+int TLM = 0;
+
+void find_b(int u, int p){
+    static stack<int> st;
+    st.push(u);
+    Khop[u] = true;
+    low[u] = num[u] = ++current;
+    for(int i=0; i<adj[u].size(); i++){
+        int v = adj[u][i];
+        if(v == p) continue;
+        if(num[v] == -1){
+            find_b(v, u);
+            low[u] = min(low[u], low[v]);
+        }
+        else if(Khop[v]){
+            low[u] = min(low[u], num[v]);
+        }
+    }
+    if(num[u] == low[u]){
+        //vector<int> scc1;
+        while(true){
+            int v = st.top();
+            st.pop();
+            Khop[v] = false;
+            //scc1.push_back(v);
+            if(u == v){
+                break;
+            }
+        }
+        TLM++;
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    cin >> n >> m;
+    for(int i=1; i<=m; i++){
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        //adj[y].push_back(x);
+    }
+    memset(num, -1, sizeof(num));
+    for(int i=1; i<=n; i++){
+        if(num[i] == -1){
+            find_b(i, i);
+        }
+    }
+
+    cout << TLM << '\n';
+    return 0;
+}

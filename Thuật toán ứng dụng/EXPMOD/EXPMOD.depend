@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1600752498 source:c:\users\taha\desktop\expmod\main.cpp
+	<iostream>
+	<vector>
+	<math.h>
+

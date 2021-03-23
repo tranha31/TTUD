@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1604928787 source:c:\users\taha\desktop\eko\main.cpp
+	<iostream>
+	<algorithm>
+	<stdio.h>
+

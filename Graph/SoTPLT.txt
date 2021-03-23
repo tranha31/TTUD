@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 100005;
+int n, m;
+vector<int> adj[N];
+int low[N], num[N], current = 0, visited[N], pre[N];
+bool Khop[N];
+int TLM = 0;
+
+void dfs(int u){
+    visited[u] = 1;
+    for(int i=0; i<adj[u].size(); i++){
+        int v = adj[u][i];
+        if(visited[v] == 0){
+            dfs(v);
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    cin >> n >> m;
+    for(int i=1; i<=m; i++){
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    //memset(num, -1, sizeof(num));
+    for(int i=1; i<=n; i++){
+        visited[i] = 0;
+    }
+    int c = 0;
+    for(int i=1; i<=n; i++){
+        if(visited[i] == 0){
+            dfs(i);
+            c++;
+        }
+    }
+
+    cout << c << '\n';
+    return 0;
+}

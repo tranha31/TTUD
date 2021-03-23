@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1600625934 source:c:\users\taha\desktop\sumsqe\main.cpp
+	<iostream>
+	<math.h>
+

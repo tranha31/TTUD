@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+const int N = 100005;
+ 
+vector<pair<int, int>> adj[N];
+bool inTree[N];
+int n, m;
+ 
+int32_t main() {
+        ios::sync_with_stdio(false); cin.tie(0);
+ 
+        cin >> n >> m;
+ 
+        for (int i = 0; i < m; i++) {
+                int u, v, w;
+                cin >> u >> v >> w;
+                adj[u].emplace_back(w, v);
+                adj[v].emplace_back(w, u);
+        }
+ 
+        inTree[1] = true;
+        set<pair<int, int>> adjSet;
+ 
+        for (auto e : adj[1]) {
+                adjSet.insert(e);
+        }
+ 
+        long long ans = 0;
+ 
+        while (!adjSet.empty()) {
+                auto nearest = *adjSet.begin();
+                adjSet.erase(adjSet.begin());
+ 
+                int u = nearest.second;
+                int dis = nearest.first;
+ 
+                if (inTree[u]) {
+                        continue;
+                }
+                inTree[u] = true;
+                ans += dis;
+ 
+                for (auto e : adj[u]) {
+                        adjSet.insert(e);
+                }
+        }
+ 
+        cout << ans << '\n';
+ 
+        return 0;
+}

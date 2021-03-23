@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1606751415 source:c:\users\taha\desktop\clopair\main.cpp
+	<iostream>
+	<cmath>
+	<algorithm>
+

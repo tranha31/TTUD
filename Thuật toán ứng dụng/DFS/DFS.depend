@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1608217788 source:c:\users\taha\desktop\dfs\main.cpp
+	<iostream>
+	<vector>
+	<list>
+	<stack>
+
+1608217840 source:c:\users\taha\desktop\bfs.cpp
+	<iostream>
+	<vector>
+	<list>
+	<queue>
+

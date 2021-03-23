@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1602662552 source:c:\users\taha\desktop\binarylist\main.cpp
+	<iostream>
+	<string.h>
+

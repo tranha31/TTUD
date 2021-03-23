@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1602502145 source:c:\users\taha\desktop\testtsp\main.cpp
+	<iostream>
+	<conio.h>
+
