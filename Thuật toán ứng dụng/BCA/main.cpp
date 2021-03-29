@@ -1,90 +1,87 @@
-#include <iostream>
-#include <vector>
-
+#include<bits/stdc++.h>
 using namespace std;
-
-int m, n;
-vector<int> Course[35];
-int dd[1000][1000];
-vector<int> Teacher[100];
-vector<int> GV[35];
-int Load[1000];
-int minLoad, maxCurrentLoad;
-
-int Check(int j, int i){
-    for(auto k : Teacher[j]){
-        if(k == i){
-            return 0;
-        }
-        if(dd[k][i] == 1){
-            return 0;
-        }
-    }
-    return 1;
-}
-
-void Try(int i){
-    for(auto j : Course[i]){
-        if(Check(j, i) == 1){
-            Teacher[j].push_back(i);
-            Load[j]++;
-            /*if(Load[j] > minLoad){
-                continue;
-            }*/
-            if(Load[j] > maxCurrentLoad){
-                maxCurrentLoad = Load[j];
-            }
-            if(i == n){
-                minLoad = maxCurrentLoad;
-            }
-            else{
-                Try(i+1);
-                Load[j]--;
-                Teacher[j].pop_back();
-            }
+#define Fr(i,a,b) for(int i=a;i<=b;i++)
+#define For(i,a,b) for(int i=a;i<b;i++)
+#define dembit1(x) __builtin_popcountll(x)
+#define fi first
+#define se second
+typedef long long ll;
+const int mod=1e9+7;
+const int oo = INT_MAX;
+const int N = 40;
+int m,n,k,c[N][N],ans;
+vector<int> a[N],t[N];
+ 
+bool check(int su, int tc)
+{
+    bool rt=false;
+    For(i,0,a[tc].size())
+    {
+        if(su==a[tc][i])
+        {
+            rt=true;
+            break;
         }
     }
+    if(rt==false) return rt;
+    For(i,0,t[tc].size())
+    {
+        int j = t[tc][i];
+        if(c[su][j]==1)
+        {
+            rt=false;
+            break;
+        }
+    }
+    return rt;
 }
-
-
+ 
+void dfs(int u)
+{
+    if(u==n+1)
+    {
+        int res=0;
+        Fr(i,1,n) res=max(res,(int)t[i].size());
+        ans=min(ans,res);
+        return;
+    }
+    Fr(i,1,m)
+    {
+        if(check(u,i))
+        {
+            t[i].push_back(u);
+            if(t[i].size()<ans)
+            {
+                dfs(u+1);
+            }
+            t[i].pop_back();
+        }
+    }
+}
+ 
 int main()
 {
-    cin >> m >> n;
-    int k;
-    for(int i=1; i<=m; i++){
-        cin >> k;
-        int tmp;
-        for(int j=1; j<=k; j++){
-            cin >> tmp;
-            GV[i].push_back(tmp);
+    scanf("%d %d",&m,&n);
+    Fr(i,1,m)
+    {
+        scanf("%d",&k);
+        Fr(j,1,k)
+        {
+            int u;
+            scanf("%d",&u);
+            a[i].push_back(u);
         }
     }
-    int e, f;
-    cin >> k;
-    for(int i=1; i<=k; i++){
-        cin >> e >> f;
-        dd[e][f] = 1;
-        dd[f][e] = 1;
+    scanf("%d",&k);
+    Fr(i,1,k)
+    {
+        int u,v;
+        scanf("%d %d",&u,&v);
+        c[u][v]=c[v][u]=1;
     }
-    for(int i=1; i<=n; i++){
-        for(int j=1; j<=m; j++){
-            for(auto l : GV[j]){
-                if(i == l){
-                    Course[i].push_back(j);
-                    break;
-                }
-            }
-        }
-    }
-    minLoad = INT_MAX;
-    maxCurrentLoad = 0;
-    Try(1);
-    cout << minLoad;
-    /*if(minLoad > 0){
-        cout << minLoad;
-    }
-    else{
-        cout << -1;
-    }*/
+    ans=oo;
+    dfs(1);
+    if(ans == oo) printf("-1");
+    else printf("%d",ans);
     return 0;
 }
